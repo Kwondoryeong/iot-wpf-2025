@@ -450,7 +450,11 @@ IoT 개발자 WPF 학습리포지토리 2025
     - CONNECT
 5. VS Code에서 [MqttPub.py](./day08/Pythons/MqttPub.py) 파일 생성
 
-    https://github.com/user-attachments/assets/a3494d2f-64bc-468f-8e9c-e4efbe60316e
+    
+
+    https://github.com/user-attachments/assets/21075d47-6878-4ec8-b1bf-2ccde04dbefe
+
+
 
 ### 스마트홈 프로젝트 시작
 1. 화면 UI 변경
