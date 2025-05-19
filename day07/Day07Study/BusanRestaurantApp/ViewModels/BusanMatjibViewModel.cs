@@ -1,6 +1,5 @@
 ﻿using BusanRestaurantApp.Helpers;
 using BusanRestaurantApp.Models;
-using BusanRestaurantApp.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.Controls.Dialogs;
@@ -8,7 +7,6 @@ using Newtonsoft.Json.Linq;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
-using System.Windows;
 
 namespace BusanRestaurantApp.ViewModels
 {
@@ -18,7 +16,6 @@ namespace BusanRestaurantApp.ViewModels
         private ObservableCollection<BusanItem> _busanItems;
         private int _pageNo;
         private int _numOfRows;
-        private BusanItem _selectedMatjbItem;
 
         public BusanMatjibViewModel(IDialogCoordinator coordinator)
         {
@@ -36,33 +33,9 @@ namespace BusanRestaurantApp.ViewModels
 
         public int PageNo { get => _pageNo; set => SetProperty(ref _pageNo, value); }
         public int NumOfRows { get => _numOfRows; set => SetProperty(ref _numOfRows, value); }
-        
-        public BusanItem SelectedMatjbItem
-        {
-            get => _selectedMatjbItem;
-            set => SetProperty(ref _selectedMatjbItem, value);
-        }
-        //partial void OnPageNoChanged(int value)
-        //{
-        //    MessageBox.Show("발동!");
-        //}
+
 
         [RelayCommand]
-        public async Task MatjibItemDoubleClick()
-        {
-            //MessageBox.Show("더블클릭 실행");
-            var viewModel = new GoogleMapViewModel();
-            viewModel.SelectedMatjbItem = SelectedMatjbItem; // 메인창에 있는 선택 아이템을 그대로 구글맵쪽으로 전달
-            var view = new GoogleMapView
-            {
-                DataContext = viewModel,
-            };
-            view.Owner = Application.Current.MainWindow;
-            view.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            Common.LOGGER.Info($"{SelectedMatjbItem.Lat}, {SelectedMatjbItem.Lng}");
-            Common.LOGGER.Info("구글맵오픈");
-            view.ShowDialog();
-        }
         private async Task GetDataFromOpenApi()
         {
             string baseUri = "http://apis.data.go.kr/6260000/FoodService/getFoodKr";
@@ -107,12 +80,12 @@ namespace BusanRestaurantApp.ViewModels
                             Place = Convert.ToString(subitem["PLACE"]),
                             Title = Convert.ToString(subitem["TITLE"]),
                             SubTitle = Convert.ToString(subitem["SUBTITLE"]),
-                            Addr1 = Convert.ToString(subitem["ADDR1"]).Replace("\n", ""),
+                            Addr1 = Convert.ToString(subitem["ADDR1"]),
                             Addr2 = Convert.ToString(subitem["ADDR2"]),
                             Cntct_Tel = Convert.ToString(subitem["CNTCT_TEL"]),
                             Homepage_Url = Convert.ToString(subitem["HOMEPAGE_URL"]),
                             Usage_Day_Week_And_Time = Convert.ToString(subitem["USAGE_DAY_WEEK_AND_TIME"]),
-                            Rprsntv_Menu = Convert.ToString(subitem["RPRSNTV_MENU"]).Replace("\n", ""),
+                            Rprsntv_Menu = Convert.ToString(subitem["RPRSNTV_MENU"]),
                             Main_Img_Normal = Convert.ToString(subitem["MAIN_IMG_NORMAL"]),
                             Main_Img_Thumb = Convert.ToString(subitem["MAIN_IMG_THUMB"]),
                             ItemCntnts = Convert.ToString(subitem["ITEMCNTNTS"]),
