@@ -1,15 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Configuration;
+using System.Data;
 using System.Windows;
 using System.Windows.Threading;
-using System.Globalization;
 
 namespace WpfSmartHomeApp.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
-
         private double _homeTemp;
         private double _homeHumid;
 
@@ -21,11 +21,14 @@ namespace WpfSmartHomeApp.ViewModels
         private string _rainResult;
         private string _airConResult;
         private string _lightResult;
-        private string _currDateTime;
+        private string? _currDateTime;
 
         private readonly DispatcherTimer _timer;
+
         public MainViewModel()
         {
+            CurrDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += (sender, e) =>
@@ -35,14 +38,13 @@ namespace WpfSmartHomeApp.ViewModels
             _timer.Start();
         }
 
-        public string CurrDateTime
+        public string? CurrDateTime
         {
             get => _currDateTime;
             set => SetProperty(ref _currDateTime, value);
         }
 
         // 온도 속성
-
         public double HomeTemp
         {
             get => _homeTemp;

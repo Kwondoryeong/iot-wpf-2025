@@ -114,10 +114,8 @@
 
                             <TextBlock FontSize="25" FontWeight="SemiBold"
                                        Foreground="Azure"
-                                       Text="{Binding CurrDateTime}" >
-                                
-                            </TextBlock>
-                                
+                                       Text="{Binding CurrDateTime}" />
+
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontSize="32" Foreground="White" Margin="0,0,30,0">
                                     <Run Text="{Binding HomeTemp, StringFormat=F1}" FontWeight="Bold" Foreground="#EFCA32" />

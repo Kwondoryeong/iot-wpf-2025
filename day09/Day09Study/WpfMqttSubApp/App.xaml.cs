@@ -1,6 +1,4 @@
 ﻿using MahApps.Metro.Controls.Dialogs;
-using System.Configuration;
-using System.Data;
 using System.Windows;
 using WpfMqttSubApp.ViewModels;
 using WpfMqttSubApp.Views;
@@ -14,7 +12,7 @@ namespace WpfMqttSubApp
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var coordinator = DialogCoordinator.Instance;   // == new DialogCoordinator()와 동일, 클래스 인스턴스, IDialogCoordinator는 Interface므로 x
+            var coordinator = DialogCoordinator.Instance;  // new DialogCoordinator() 와 동일
             var viewModel = new MainViewModel(coordinator);
             var view = new MainView
             {
@@ -23,5 +21,4 @@ namespace WpfMqttSubApp
             view.ShowDialog();
         }
     }
-
 }
